@@ -1,4 +1,4 @@
-package database;
+package user;
 
 
 
@@ -12,8 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import user.User;
-import user.UserProfile;
+import database.DatabaseConnection;
 
 public class UserAdapter {
 
