@@ -33,27 +33,25 @@ public class prova
     public static void main(String[] args)
     {
         createConnection();
-        //insertRestaurants(5, "LaVals", "Berkeley");
-        try {
-			selectRestaurants();
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        shutdown();
+        insertRestaurants(5, "LaVals", "Berkeley");
+        
+		//	selectRestaurants();
+		 shutdown();
     }
     
-    private static void createConnection()
+    private static Connection createConnection()
     {
         try
         {
-            
+        	Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL);
         }
         catch (Exception except)
         {
             except.printStackTrace();
         }
+		return conn;
     }
     
     private static void insertRestaurants(int id, String restName, String cityName)
@@ -61,7 +59,10 @@ public class prova
         try
         {
             stmt = conn.createStatement();
-            stmt.execute("insert into utenti values('pippo@email.it','psycopass','nome','cognome',null,null,null,null,null,null,null)");
+            stmt.execute("create table beaconValue(beacon_ID varchar(12),"
+            		+ "user_ID varchar(15),dt timestamp, "
+            		+ "temperature float, luxometer float, barometer float,"
+            		+ "accx float, accy float, accz float, primary key(beacon_ID,user_ID,dt))");
             stmt.close();
         }
         catch (SQLException sqlExcept)
@@ -69,6 +70,7 @@ public class prova
             sqlExcept.printStackTrace();
         }
     }
+    
     @GET
 	@Path("/prova")
 	@Produces(MediaType.TEXT_PLAIN)

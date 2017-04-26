@@ -1,17 +1,10 @@
 package database;
  
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
+
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.ws.rs.core.Response;
-
-import org.sqlite.JDBC;
-
 import user.User;
-import user.Userlist;
  
 /**
  *
@@ -19,10 +12,35 @@ import user.Userlist;
  */
 public class DatabaseConnection {
 	
+    private static String dbURL = "jdbc:derby://localhost:1527/dbingsoft;create=true;user=APP;password=APP";
+    private static String tableName = "utenti";
+    // jdbc Connection
+    private static Connection conn = null;
+    private static Statement stmt = null;
 	private static User us;
      /**
      * Connect to a sample database
      */
+	
+	 public static Connection connect()
+	    {
+	        try
+	        {
+	        	Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+	            //Get a connection
+	            conn = DriverManager.getConnection(dbURL);
+	        }
+	        catch (Exception except)
+	        {
+	            except.printStackTrace();
+	        }
+			return conn;
+	    }
+	 
+	 
+	 
+	 
+	 /*
     public static void createDB() {
     	  // SQLite connection string
         String url = "jdbc:sqlite:db/dbingsoft.db";
@@ -78,7 +96,7 @@ public class DatabaseConnection {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
     	/*
     	User user =  new User();
 		user.setEmail("prova@lilm.it");
@@ -133,7 +151,7 @@ public class DatabaseConnection {
     	for(int i =0;i<user.size();i++){
     		System.out.println("indice: "+i);
     		user.get(i).printProfile();
-    	}*/
+    	}
     }
 
 	public static User getUser() {
@@ -154,6 +172,6 @@ public class DatabaseConnection {
 			String result = "Error";
     		return Response.status(405).entity(result).build();
 		}
-	}
+	}*/
     
 }

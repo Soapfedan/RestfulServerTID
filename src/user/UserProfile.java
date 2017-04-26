@@ -48,7 +48,11 @@ public class UserProfile {
         this.cognome = cognome;
     }
 
-    public String getPassword() {
+    public UserProfile() {
+		
+	}
+
+	public String getPassword() {
         return password;
     }
 
@@ -105,4 +109,49 @@ public class UserProfile {
           System.out.println("sesso: " +sesso);
           System.out.println("codice fiscale: "+cod_fis);
     }
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public void setData_nascita(String data_nascita) {
+		this.data_nascita = data_nascita;
+	}
+
+	public void setLuogo_nascita(String luogo_nascita) {
+		this.luogo_nascita = luogo_nascita;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public void setCod_fis(String cod_fis) {
+		this.cod_fis = cod_fis;
+	}
+    
 }

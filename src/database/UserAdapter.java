@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import user.User;
 import user.UserProfile;
 
 public class UserAdapter {
@@ -57,17 +58,15 @@ public class UserAdapter {
     }
 
     //create an user
-    public static boolean createUser(String email,String password, String name, String surname, String birth_date,
-                           String birth_city, String province, String state, String telephone, String sex,
-                           String personal_number ) throws SQLException {
-    	ArrayList<String> initialValues = createContentValues(email, password, name, surname, birth_date, birth_city,
-                province, state, telephone, sex, personal_number);
-        //invertiti i rami
-        String sql = "insert into User(email, password ," +
+    public static boolean createUser(UserProfile user) throws SQLException {
+    	 ArrayList<String> initialValues = createContentValues(user.getEmail(), user.getPassword(), user.getNome(), user.getCognome(), user.getData_nascita(), user.getLuogo_nascita(),
+         		user.getProvincia(), user.getStato(), user.getTelefono(), user.getSesso(), user.getCod_fis());
+
+        String sql = "insert into utenti(email, password ," +
             " nome, cognome, data_nascita, " +
             "luogo_nascita, provincia, stato," +
-            " telefono, sesso, cod_fis) values(?,?,?,?,?,?,?,?,?,?,?);";
-        if(checkNewUser(email)==0){
+            " telefono, sesso, cod_fis) values(?,?,?,?,?,?,?,?,?,?,?)";
+        if(checkNewUser(user.getEmail())==0){
         	try (Connection conn = DatabaseConnection.connect();
                     PreparedStatement pstmt = conn.prepareStatement(sql)) {
         		
@@ -89,12 +88,10 @@ public class UserAdapter {
     }
 
     //update an user
-    public static boolean updateProfile(String email,String password, String name, String surname, String birth_date,
-                                 String birth_city, String province, String state, String telephone, String sex,
-                                 String personal_number ) {
-        ArrayList<String> updateValues = createContentValues(email, password, name, surname, birth_date, birth_city,
-                province, state, telephone, sex, personal_number);
-        String sql = "update User set password =? ," +
+    public static boolean updateProfile(UserProfile user) {
+        ArrayList<String> updateValues = createContentValues(user.getEmail(), user.getPassword(), user.getNome(), user.getCognome(), user.getData_nascita(), user.getLuogo_nascita(),
+        		user.getProvincia(), user.getStato(), user.getTelefono(), user.getSesso(), user.getCod_fis());
+        String sql = "update utenti set password =? ," +
                 " nome=?, cognome=?, data_nascita=?, " +
                 "luogo_nascita=?, provincia=?, stato=?," +
                 " telefono=?, sesso=?, cod_fis=? where email = ?";
@@ -127,7 +124,7 @@ public class UserAdapter {
 	public static int checkNewUser(String mail) throws SQLException{
     	
     	int count = 0;
-    	String sql = "SELECT email FROM User WHERE email = ?";
+    	String sql = "SELECT email FROM utenti WHERE email = ?";
           try {
         	  Connection conn = DatabaseConnection.connect();
         	  PreparedStatement pstmt  = conn.prepareStatement(sql);
@@ -152,8 +149,7 @@ public class UserAdapter {
 
     //get all user properties
     public static UserProfile getUserProfile(String mail) throws SQLException{
-       String sql = "SELECT email,password,nome,cognome,data_nascita"
-       		+ ",luogo_nascita,provincia,stato,telefono,sesso,cod_fis FROM User WHERE email = ?";
+       String sql = "SELECT * FROM utenti WHERE email = ?";
        		UserProfile profile = null; 
        try {
     	   Connection conn = DatabaseConnection.connect();
@@ -190,7 +186,7 @@ public class UserAdapter {
     //get email and password
     
 	public static String getCredential(String mail){
-    	String sql = "SELECT password FROM User WHERE email = ?";
+    	String sql = "SELECT password FROM utenti WHERE email = ?";
     	String result = "";
     	boolean empty = true;
         try{
@@ -227,7 +223,7 @@ public class UserAdapter {
     	
     	ArrayList<UserProfile> users = new ArrayList<>();
     	String sql = "SELECT email,password,nome,cognome,data_nascita"
-           		+ ",luogo_nascita,provincia,stato,telefono,sesso,cod_fis FROM User";
+           		+ ",luogo_nascita,provincia,stato,telefono,sesso,cod_fis FROM utenti";
             try (Connection conn = DatabaseConnection.connect()){
             	
             	Statement stat = conn.createStatement();

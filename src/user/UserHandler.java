@@ -21,6 +21,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import user.User;
+import user.UserProfile;
+import user.Userlist;
 import database.DatabaseConnection;
 import database.UserAdapter;
 
@@ -30,22 +33,47 @@ public class UserHandler {
 	@POST
 	@Path("/createuser")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createUser(UserProfile profile){
-		
+	public Response createUser(UserProfile profile) throws SQLException{
+		if(UserAdapter.createUser(profile)){
+			//create user
+			String result = "User created";
+    		return Response.status(201).entity(result).build();
+		}else{
+			String result = "Error";
+    		return Response.status(500).entity(result).build();
+		}
 	}
 	
 	@GET
 	@Path("/getuser/{email}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserProfile getUserProfile(@PathParam("email") String mail){
-		return null;
+		UserProfile userp = new UserProfile();
+		if(!mail.isEmpty() && mail!=null){
+			try {
+				 userp = UserAdapter.getUserProfile(mail);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//userp.printProfile();
+		return userp;
 	}
 	
 	@PUT
 	@Path("/updateuser")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void updateProfile(UserProfile profile){
+	public Response updateProfile(UserProfile profile){
 		
+		if(UserAdapter.updateProfile(profile)){
+			//login
+			String result = "User updated";
+    		return Response.status(201).entity(result).build();
+		}else{
+			String result = "Error";
+    		return Response.status(500).entity(result).build();
+		}
 	}
 	
 	
@@ -67,7 +95,7 @@ public class UserHandler {
     		return Response.status(201).entity(result).build();
 		}else{
 			String result = "Error";
-    		return Response.status(404).entity(result).build();
+    		return Response.status(500).entity(result).build();
 		}
 		
 	}
@@ -78,8 +106,8 @@ public class UserHandler {
     @Produces(MediaType.APPLICATION_JSON)
     public User createTodo(){
 		User u =  new User();
-		u.setEmail("prova@lilm.it");
-		u.setPassword("bla2");
+		u.setEmail("pippo@email.it");
+		u.setPassword("psycopass");
 		return u;
     }
     
