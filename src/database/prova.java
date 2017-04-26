@@ -60,9 +60,10 @@ public class prova
         {
             stmt = conn.createStatement();
             stmt.execute("create table beaconValue(beacon_ID varchar(12),"
-            		+ "user_ID varchar(15),dt timestamp, "
-            		+ "temperature float, luxometer float, barometer float,"
-            		+ "accx float, accy float, accz float, primary key(beacon_ID,user_ID,dt))");
+            		+ "user_ID varchar(15),dt varchar(25), "
+            		+ "temperature double, luxometer double, barometer double,"
+            		+ "accx double, accy double, accz double, primary key(beacon_ID,user_ID,dt))");
+
             stmt.close();
         }
         catch (SQLException sqlExcept)

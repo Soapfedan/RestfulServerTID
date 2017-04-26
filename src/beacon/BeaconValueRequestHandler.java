@@ -1,6 +1,7 @@
 package beacon;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -19,9 +20,46 @@ public class BeaconValueRequestHandler {
 	@POST
 	@Path("/insertvalue")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insertvalue(){
-		return null;
+	public void insertvalue(BeaconValue value){
+		try {
+			BeaconValueAdapter.insertValue(value);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+	}
+	
+	@GET
+	@Path("/test")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BeaconValue test(){
+		BeaconValue value = new BeaconValue();
+		value.setUser_ID("provauser");
+		value.setBeacon_ID("provabeacon");
+		value.setDt("1962-09-23 03:23:34.234");
+		value.setTemperature(18.93558545);
+		value.setLuxometer(28.951999999999998);
+		value.setBarometer(854.79424);
+		value.setAccx(0.012255859375);
+		value.setAccy(-0.989697265625);
+		value.setAccz(-0.00532226562);
+		
+		return value;
+	}
+	
+	@GET
+	@Path("/getallvalue")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BeaconValueList getallvalues(){
+		BeaconValueList list = new BeaconValueList();
+		try {
+			list.setBeacons(BeaconValueAdapter.getallvalues());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
 	}
 	
 }

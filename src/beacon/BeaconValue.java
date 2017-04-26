@@ -9,21 +9,21 @@ public class BeaconValue {
 
 	private String beacon_ID;
 	private String user_ID;
-	private Timestamp dt;
-	private float temperature;
-	private float luxometer;
-	private float barometer;
-	private float accx;
-	private float accy;
-	private float accz;
+	private String dt;
+	private double temperature;
+	private double luxometer;
+	private double barometer;
+	private double accx;
+	private double accy;
+	private double accz;
 	
 	public BeaconValue(){
 		
 	}
 
-	public BeaconValue(String beacon_ID, String user_ID, Timestamp dt,
-			float temperature, float luxometer, float barometer, float accx,
-			float accy, float accz) {
+	public BeaconValue(String beacon_ID, String user_ID, String dt,
+			double temperature, double luxometer, double barometer, double accx,
+			double accy, double accz) {
 		this.beacon_ID = beacon_ID;
 		this.user_ID = user_ID;
 		this.dt = dt;
@@ -51,59 +51,59 @@ public class BeaconValue {
 		this.user_ID = user_ID;
 	}
 
-	public Timestamp getDt() {
+	public String getDt() {
 		return dt;
 	}
 
-	public void setDt(Timestamp dt) {
+	public void setDt(String dt) {
 		this.dt = dt;
 	}
 
-	public float getTemperature() {
+	public double getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(float temperature) {
+	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
 
-	public float getLuxometer() {
+	public double getLuxometer() {
 		return luxometer;
 	}
 
-	public void setLuxometer(float luxometer) {
+	public void setLuxometer(double luxometer) {
 		this.luxometer = luxometer;
 	}
 
-	public float getBarometer() {
+	public double getBarometer() {
 		return barometer;
 	}
 
-	public void setBarometer(float barometer) {
+	public void setBarometer(double barometer) {
 		this.barometer = barometer;
 	}
 
-	public float getAccx() {
+	public double getAccx() {
 		return accx;
 	}
 
-	public void setAccx(float accx) {
+	public void setAccx(double accx) {
 		this.accx = accx;
 	}
 
-	public float getAccy() {
+	public double getAccy() {
 		return accy;
 	}
 
-	public void setAccy(float accy) {
+	public void setAccy(double accy) {
 		this.accy = accy;
 	}
 
-	public float getAccz() {
+	public double getAccz() {
 		return accz;
 	}
 
-	public void setAccz(float accz) {
+	public void setAccz(double accz) {
 		this.accz = accz;
 	}
 	
