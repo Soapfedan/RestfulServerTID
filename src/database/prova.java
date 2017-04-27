@@ -58,12 +58,11 @@ public class prova
     {
         try
         {
+        	//B0:B4:48:BC:59:87;145;320;280
+        	//B0:B4:48:BC:CE:87;150;230;230
             stmt = conn.createStatement();
-            stmt.execute("create table beaconValue(beacon_ID varchar(12),"
-            		+ "user_ID varchar(15),dt varchar(25), "
-            		+ "temperature double, luxometer double, barometer double,"
-            		+ "accx double, accy double, accz double, primary key(beacon_ID,user_ID,dt))");
-
+            stmt.execute("insert into beacons (beacon_ID,floor,x,y)"
+            		+ "values ('B0:B4:48:BC:CE:87','150','230','230')");
             stmt.close();
         }
         catch (SQLException sqlExcept)

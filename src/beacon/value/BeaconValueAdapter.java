@@ -1,4 +1,4 @@
-package beacon;
+package beacon.value;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
