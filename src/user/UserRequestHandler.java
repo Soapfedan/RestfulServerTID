@@ -85,9 +85,9 @@ public class UserRequestHandler {
 		// DEGLI UTENTI CONNESSI
 		
 		String pass = UserAdapter.getCredential(user.getEmail());
-		System.out.println(user.getEmail());
+		/*System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
-		System.out.println(pass);
+		System.out.println(pass);*/
 		if(pass.equals(user.getPassword()) ){
 			//login
 			String result = "User logged";

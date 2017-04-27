@@ -58,11 +58,10 @@ public class prova
     {
         try
         {
-        	//B0:B4:48:BC:59:87;145;320;280
-        	//B0:B4:48:BC:CE:87;150;230;230
+        	
             stmt = conn.createStatement();
-            stmt.execute("insert into beacons (beacon_ID,floor,x,y)"
-            		+ "values ('B0:B4:48:BC:CE:87','150','230','230')");
+            stmt.execute("create table usersposition(user_id varchar(15) primary key,floor varchar(5),x varchar(3),y varchar(3))");
+            //stmt.execute("drop table usersposition");
             stmt.close();
         }
         catch (SQLException sqlExcept)
