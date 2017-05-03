@@ -60,7 +60,9 @@ public class prova
         {
         	
             stmt = conn.createStatement();
-            stmt.execute("create table usersposition(user_id varchar(15) primary key,floor varchar(5),x varchar(3),y varchar(3))");
+            stmt.execute("create table notifications(id int primary key,"
+            		+ "cod_cat int,"
+            		+ "floor varchar(5),room varchar(10))");
             //stmt.execute("drop table usersposition");
             stmt.close();
         }

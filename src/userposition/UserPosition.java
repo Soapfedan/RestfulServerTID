@@ -1,24 +1,24 @@
-package usersposition;
+package userposition;
 
 import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class UsersPosition {
+public class UserPosition {
 
 	private String user_ID;
 	private String floor;
 	private String x;
 	private String y;
 	
-	public UsersPosition(){
+	public UserPosition(){
 		
 	}
 	
 	
 
-	public UsersPosition(String user_ID, String floor, String x, String y) {
+	public UserPosition(String user_ID, String floor, String x, String y) {
 		super();
 		this.user_ID = user_ID;
 		this.floor = floor;

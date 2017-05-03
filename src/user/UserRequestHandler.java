@@ -103,10 +103,18 @@ public class UserRequestHandler {
     @GET
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
-    public User createTodo(){
-		User u =  new User();
+    public UserProfile createTodo(){
+		UserProfile u =  new UserProfile();
 		u.setEmail("pippo@email.it");
 		u.setPassword("psycopass");
+		u.setNome("nome");
+		u.setCognome("Cognome");
+		u.setData_nascita("data");
+		u.setLuogo_nascita("luogo");
+		u.setProvincia("prov");
+		u.setStato("stato");
+		u.setTelefono("tel");
+		u.setCod_fis("codfis");
 		return u;
     }
     

@@ -1,4 +1,4 @@
-package usersposition;
+package userposition;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -15,12 +15,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/position")
-public class UsersPositionRequestHandler {
+public class UserPositionRequestHandler {
 
 	@DELETE
 	@Path("/deleteuser/{user}")
 	public Response deleteUser(@PathParam("user") String ip) throws SQLException{
-		if(UsersPositionAdapter.deleteUser(ip)){
+		if(UserPositionAdapter.deleteUser(ip)){
 			//user deleted
 			String result = "User deleted";
     		return Response.status(201).entity(result).build();
@@ -34,12 +34,12 @@ public class UsersPositionRequestHandler {
 	@PUT
 	@Path("/setposition")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void insertposition(UsersPosition value){
+	public void insertposition(UserPosition value){
 		try {
-			if(UsersPositionAdapter.checkPosition(value.getUser_ID())==0){
-				UsersPositionAdapter.insertUser(value);
+			if(UserPositionAdapter.checkPosition(value.getUser_ID())==0){
+				UserPositionAdapter.insertUser(value);
 			}else{
-				UsersPositionAdapter.updatePosition(value);
+				UserPositionAdapter.updatePosition(value);
 			}
 			
 		} catch (SQLException e) {
@@ -52,8 +52,8 @@ public class UsersPositionRequestHandler {
 	@GET
 	@Path("/test")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UsersPosition test(){
-		UsersPosition value = new UsersPosition();
+	public UserPosition test(){
+		UserPosition value = new UserPosition();
 		value.setUser_ID("172.175.111.255");
 		value.setFloor("150");
 		value.setX("320");
@@ -65,10 +65,10 @@ public class UsersPositionRequestHandler {
 	@GET
 	@Path("/getpositions")
 	@Produces(MediaType.APPLICATION_JSON)
-	public UsersPositionList getallposition(){
-		UsersPositionList list = new UsersPositionList();
+	public UserPositionList getallposition(){
+		UserPositionList list = new UserPositionList();
 		try {
-			list.setBeacons(UsersPositionAdapter.getallpositions());
+			list.setUsers(UserPositionAdapter.getallpositions());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

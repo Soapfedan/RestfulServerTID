@@ -1,4 +1,4 @@
-package usersposition;
+package userposition;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import user.UserProfile;
 import database.DatabaseConnection;
 
 
-public class UsersPositionAdapter {
+public class UserPositionAdapter {
 
 	//delete
 	public static boolean deleteUser(String ip) throws SQLException{
@@ -34,7 +34,7 @@ public class UsersPositionAdapter {
 	
 	
 	//insert
-		public static void insertUser(UsersPosition position) throws SQLException{
+		public static void insertUser(UserPosition position) throws SQLException{
 			
 			String sql ="insert into usersposition(user_ID,floor,x,y)"
 					+ "values(?,?,?,?)";
@@ -54,13 +54,13 @@ public class UsersPositionAdapter {
 		}
 
 	//select all
-	public static ArrayList<UsersPosition> getallpositions() throws SQLException{
+	public static ArrayList<UserPosition> getallpositions() throws SQLException{
 		
 		String sql = "select * from usersposition";
 		Connection conn = DatabaseConnection.connect();
 	 	Statement stat;
 	 	ResultSet rs = null;
-	 	ArrayList<UsersPosition> values = new ArrayList<>();
+	 	ArrayList<UserPosition> values = new ArrayList<>();
 		try {
 			stat = conn.createStatement();
 			rs  = stat.executeQuery(sql);
@@ -68,9 +68,9 @@ public class UsersPositionAdapter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		UsersPosition beacval = null;
+		UserPosition beacval = null;
 		while (rs.next()) {
-			beacval = new UsersPosition(rs.getString("user_ID"),
+			beacval = new UserPosition(rs.getString("user_ID"),
             						 rs.getString("floor"),
             						 rs.getString("x"),
             						 rs.getString("y"));
@@ -105,7 +105,7 @@ public class UsersPositionAdapter {
 	          }
 	          
 	    }
-	public static boolean updatePosition(UsersPosition pos) {
+	public static boolean updatePosition(UserPosition pos) {
 	  
 	    String sql = "update usersposition set floor =? ," +
 	            " x=?, y=?  where user_ID = ?";
