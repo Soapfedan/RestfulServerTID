@@ -1,31 +1,40 @@
 package userposition;
 
-import java.sql.Timestamp;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class UserPosition {
 
+	private String beacon_ID;
 	private String user_ID;
-	private String floor;
-	private String x;
-	private String y;
-	
+	private String nome;
+	private String cognome;
+
+
 	public UserPosition(){
 		
 	}
-	
-	
 
-	public UserPosition(String user_ID, String floor, String x, String y) {
+
+	public UserPosition(String beacon_ID, String user_ID, String nome,
+			String cognome) {
 		super();
+		this.beacon_ID = beacon_ID;
 		this.user_ID = user_ID;
-		this.floor = floor;
-		this.x = x;
-		this.y = y;
+		this.nome = nome;
+		this.cognome = cognome;
 	}
 
+
+	public String getBeacon_ID() {
+		return beacon_ID;
+	}
+
+
+	public void setBeacon_ID(String beacon_ID) {
+		this.beacon_ID = beacon_ID;
+	}
 
 
 	public String getUser_ID() {
@@ -33,46 +42,33 @@ public class UserPosition {
 	}
 
 
-
 	public void setUser_ID(String user_ID) {
 		this.user_ID = user_ID;
 	}
 
 
-
-	public String getFloor() {
-		return floor;
+	public String getNome() {
+		return nome;
 	}
 
 
-
-	public void setFloor(String floor) {
-		this.floor = floor;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 
-
-	public String getX() {
-		return x;
+	public String getCognome() {
+		return cognome;
 	}
 
 
-
-	public void setX(String x) {
-		this.x = x;
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
-
-
-
-	public String getY() {
-		return y;
-	}
-
-
-
-	public void setY(String y) {
-		this.y = y;
-	}
+	
+	
+	
+	
 
 
 

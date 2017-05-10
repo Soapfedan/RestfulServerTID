@@ -19,7 +19,7 @@ public class UserPositionAdapter {
 	public static boolean deleteUser(String ip) throws SQLException{
 		
 		boolean flag = false;
-		String sql = "delete from usersposition where user_ID = ?";
+		String sql = "delete from userposition where user_ID = ?";
 		
 		Connection conn = DatabaseConnection.connect();
   	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
@@ -36,17 +36,18 @@ public class UserPositionAdapter {
 	//insert
 		public static void insertUser(UserPosition position) throws SQLException{
 			
-			String sql ="insert into usersposition(user_ID,floor,x,y)"
+			String sql ="insert into userposition(beacon_ID,user_ID,nome,cognome)"
 					+ "values(?,?,?,?)";
 			
 			Connection conn = DatabaseConnection.connect();
 	  	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
 	    
 	        // set the value
-	        pstmt.setString(1,position.getUser_ID());
-	        pstmt.setString(2,position.getFloor());
-	        pstmt.setString(3,position.getX());
-	        pstmt.setString(4,position.getY());
+	        pstmt.setString(1,position.getBeacon_ID());
+	        pstmt.setString(2,position.getUser_ID());
+	        pstmt.setString(3,position.getNome());
+	        pstmt.setString(4,position.getCognome());
+
 	       
 	        
 	        pstmt.executeUpdate();
@@ -56,7 +57,7 @@ public class UserPositionAdapter {
 	//select all
 	public static ArrayList<UserPosition> getallpositions() throws SQLException{
 		
-		String sql = "select * from usersposition";
+		String sql = "select * from userposition";
 		Connection conn = DatabaseConnection.connect();
 	 	Statement stat;
 	 	ResultSet rs = null;
@@ -70,10 +71,10 @@ public class UserPositionAdapter {
 		}
 		UserPosition beacval = null;
 		while (rs.next()) {
-			beacval = new UserPosition(rs.getString("user_ID"),
-            						 rs.getString("floor"),
-            						 rs.getString("x"),
-            						 rs.getString("y"));
+			beacval = new UserPosition(rs.getString("beacon_ID"),
+            						 rs.getString("user_ID"),
+            						 rs.getString("nome"),
+            						 rs.getString("cognome"));
             values.add(beacval);
         }
         return values;
@@ -84,7 +85,7 @@ public class UserPositionAdapter {
 	public static int checkPosition(String ip) throws SQLException{
 	    	
 	    	int count = 0;
-	    	String sql = "SELECT user_id FROM usersposition WHERE user_ID = ?";
+	    	String sql = "SELECT user_id FROM userposition WHERE user_ID = ?";
 	          try {
 	        	  Connection conn = DatabaseConnection.connect();
 	        	  PreparedStatement pstmt  = conn.prepareStatement(sql);
@@ -107,15 +108,13 @@ public class UserPositionAdapter {
 	    }
 	public static boolean updatePosition(UserPosition pos) {
 	  
-	    String sql = "update usersposition set floor =? ," +
-	            " x=?, y=?  where user_ID = ?";
+	    String sql = "update userposition set beacon_ID =? " +
+	            "  where user_ID = ?";
 	    try (Connection conn = DatabaseConnection.connect();
 	            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
-				pstmt.setString(1,pos.getFloor());
-				pstmt.setString(2,pos.getX());
-				pstmt.setString(3,pos.getY());
-				pstmt.setString(4,pos.getUser_ID());
+				pstmt.setString(1,pos.getBeacon_ID());
+				pstmt.setString(2,pos.getUser_ID());
 	 
 	        pstmt.executeUpdate();
 	        return true;

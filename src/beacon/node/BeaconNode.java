@@ -1,7 +1,5 @@
 package beacon.node;
 
-import java.sql.Timestamp;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement

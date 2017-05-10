@@ -60,11 +60,12 @@ public class UserAdapter {
     public static boolean createUser(UserProfile user) throws SQLException {
     	 ArrayList<String> initialValues = createContentValues(user.getEmail(), user.getPassword(), user.getNome(), user.getCognome(), user.getData_nascita(), user.getLuogo_nascita(),
          		user.getProvincia(), user.getStato(), user.getTelefono(), user.getSesso(), user.getCod_fis());
-
+    	 
         String sql = "insert into utenti(email, password ," +
             " nome, cognome, data_nascita, " +
             "luogo_nascita, provincia, stato," +
             " telefono, sesso, cod_fis) values(?,?,?,?,?,?,?,?,?,?,?)";
+        System.out.println(user.getData_nascita());
         if(checkNewUser(user.getEmail())==0){
         	try (Connection conn = DatabaseConnection.connect();
                     PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -78,7 +79,7 @@ public class UserAdapter {
                 pstmt.executeUpdate();
                 return true;
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
                 return false;
             }
         }else {

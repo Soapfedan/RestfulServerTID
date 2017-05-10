@@ -8,17 +8,38 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import beacon.value.BeaconValue;
 import user.UserProfile;
 import database.DatabaseConnection;
 
 
 public class BeaconNodeAdapter {
 
+	
+	//insert
+	public static void insertValue(BeaconNode beacon,String building) throws SQLException{
+		
+		String sql ="insert into beacons(beacon_ID,building,floor,x,y)"
+				+ " values(?,?,?,?,?)";
+		
+		Connection conn = DatabaseConnection.connect();
+  	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
+    
+        // set the value
+        pstmt.setString(1,beacon.getBeacon_ID());
+        pstmt.setString(2,building);
+        pstmt.setString(3,beacon.getFloor());
+        pstmt.setString(4,beacon.getX());
+        pstmt.setString(5,beacon.getY());
+        
+        pstmt.executeUpdate();
+        
+	}
 
 	//select all
-	public static ArrayList<BeaconNode> getallvalues(String floor) throws SQLException{
+	public static ArrayList<BeaconNode> getallvalues(String building) throws SQLException{
 		
-		String sql = "select * from beacons where floor = ?";
+		String sql = "select beacon_ID,floor,x,y from beacons where building = ?";
 		Connection conn = DatabaseConnection.connect();
 	 	
 	 	ResultSet rs = null;
@@ -27,7 +48,7 @@ public class BeaconNodeAdapter {
 	  	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
 	    
 	        // set the value
-	        pstmt.setString(1,floor);
+	        pstmt.setString(1,building);
             rs  = pstmt.executeQuery();
 
 		} catch (SQLException e) {

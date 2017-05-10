@@ -94,7 +94,7 @@ public class UserRequestHandler {
     		return Response.status(201).entity(result).build();
 		}else{
 			String result = "Error";
-    		return Response.status(419).entity(result).build();
+    		return Response.status(500).entity(result).build();
 		}
 		
 	}
@@ -109,9 +109,9 @@ public class UserRequestHandler {
 		u.setPassword("psycopass");
 		u.setNome("nome");
 		u.setCognome("Cognome");
-		u.setData_nascita("data");
+		u.setData_nascita("1994-02-02");
 		u.setLuogo_nascita("luogo");
-		u.setProvincia("prov");
+		u.setProvincia("an");
 		u.setStato("stato");
 		u.setTelefono("tel");
 		u.setCod_fis("codfis");

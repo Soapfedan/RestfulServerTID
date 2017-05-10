@@ -55,9 +55,9 @@ public class UserPositionRequestHandler {
 	public UserPosition test(){
 		UserPosition value = new UserPosition();
 		value.setUser_ID("172.175.111.255");
-		value.setFloor("150");
-		value.setX("320");
-		value.setY("114");
+		value.setBeacon_ID("id");
+		value.setNome("Mario");
+		value.setCognome("Rossi");
 		
 		return value;
 	}

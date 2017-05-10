@@ -70,6 +70,7 @@ public class NotificationGenerator {
 					}
 					for(int i=0;i<userlist.getUsers().size();i++){
 						String ip = userlist.getUsers().get(i).getUser_ID();
+						ip = "http://"+ip+":8888";
 						try {
 							sendPost(ip, json);
 						} catch (Exception e) {
@@ -106,7 +107,7 @@ public class NotificationGenerator {
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			//wr.writeBytes(urlParameters);
-			wr.writeChars(json);
+			wr.writeChars("prova funziona");
 			wr.flush();
 			wr.close();
 
