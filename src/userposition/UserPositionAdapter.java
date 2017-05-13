@@ -108,13 +108,15 @@ public class UserPositionAdapter {
 	    }
 	public static boolean updatePosition(UserPosition pos) {
 	  
-	    String sql = "update userposition set beacon_ID =? " +
-	            "  where user_ID = ?";
+	    String sql = "update userposition set beacon_ID =?,nome = ?,"
+	    		+ "cognome = ? where user_ID = ?";
 	    try (Connection conn = DatabaseConnection.connect();
 	            PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			
 				pstmt.setString(1,pos.getBeacon_ID());
-				pstmt.setString(2,pos.getUser_ID());
+				pstmt.setString(2,pos.getNome());
+				pstmt.setString(3,pos.getCognome());
+				pstmt.setString(4,pos.getUser_ID());
 	 
 	        pstmt.executeUpdate();
 	        return true;

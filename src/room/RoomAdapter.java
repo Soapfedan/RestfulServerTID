@@ -35,7 +35,7 @@ public class RoomAdapter {
 	//select all
 	public static ArrayList<Room> getallvalues(String building) throws SQLException{
 		
-		String sql = "select x,y,floor,width,room from rooms";
+		String sql = "select x,y,floor,width,room from rooms where building = ?";
 		Connection conn = DatabaseConnection.connect();
 	 	
 	 	ResultSet rs = null;
@@ -44,7 +44,7 @@ public class RoomAdapter {
 	  	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
 	    
 	        // set the value
-	        //pstmt.setString(1,building);
+	        pstmt.setString(1,building);
             rs  = pstmt.executeQuery();
 
 		} catch (SQLException e) {

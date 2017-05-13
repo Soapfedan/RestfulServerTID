@@ -88,4 +88,21 @@ public class NotificationAdapter {
 		
 	}
 	
+	//delete
+		public static boolean deleteNot(String id) throws SQLException{
+			
+			boolean flag = false;
+			String sql = "delete from notifications where id = ?";
+			
+			Connection conn = DatabaseConnection.connect();
+	  	  	PreparedStatement pstmt  = conn.prepareStatement(sql);
+	    
+	        // set the value
+	        pstmt.setString(1,id);
+	        if(pstmt.executeUpdate()==1){
+	        	flag = true;
+	        }
+	        return flag;
+		}
+	
 }

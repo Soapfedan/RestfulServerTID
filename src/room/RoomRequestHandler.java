@@ -23,12 +23,29 @@ public class RoomRequestHandler {
 	@POST
 	@Path("/insertroom/{building}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void insertvalue(BeaconNode value,@PathParam("building") String building){
+	public void insertvalue(Room value,@PathParam("building") String building){
 		try {
-			BeaconNodeAdapter.insertValue(value,building);
+			RoomAdapter.insertValue(value,building);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@POST
+	@Path("/insertrooms/{building}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void insertvalues(RoomList rooms,@PathParam("building") String building){
+		for(int j=0;j<rooms.getRooms().size();j++){
+			Room value = rooms.getRooms().get(j);
+			try {
+				RoomAdapter.insertValue(value,building);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
