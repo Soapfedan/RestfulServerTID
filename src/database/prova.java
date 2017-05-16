@@ -22,7 +22,6 @@ import javax.ws.rs.core.Response;
 import user.User;
 
 
-@Path("/prova")
 public class prova
 {
     private static String dbURL = "jdbc:derby://localhost:1527/dbingsoft;create=true;user=APP;password=APP";
@@ -63,9 +62,8 @@ public class prova
             stmt = conn.createStatement();
             //stmt.execute("truncate table userposition");
            
-            //stmt.execute("create table rooms(x varchar(5),y varchar(5),floor varchar(5),"
-            //		+ "width varchar(5),room varchar(15),building varchar(20), primary key(room,building))  ");
-            //stmt.execute("drop table usersposition");
+            //stmt.execute("create table csvVersion(version int primary key)");
+            stmt.execute("insert into csvVersion(version) values(1)");
             stmt.close();
         }
         catch (SQLException sqlExcept)
@@ -138,7 +136,7 @@ public class prova
         }
 
     }
-    
+    /*
     @GET
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
@@ -147,5 +145,5 @@ public class prova
 		u.setEmail("prova@lilm.it");
 		u.setPassword("bla2");
 		return u;
-    }
+    }*/
 }

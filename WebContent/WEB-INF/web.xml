@@ -6,7 +6,7 @@
      <!-- Register resources and providers under com.vogella.jersey.first package. -->
     <init-param>
         <param-name>jersey.config.server.provider.packages</param-name>
-        <param-value>user,beacon.value,beacon.node,room,userposition,notification</param-value>
+        <param-value>user,beacon.value,beacon.node,room,database,userposition,notification</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
