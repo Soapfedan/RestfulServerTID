@@ -16,6 +16,10 @@ public class UserPositionList {
 	public void setUsers(ArrayList<UserPosition> users) {
 		this.users = users;
 	}
+	
+	public UserPositionList(){
+		users = new ArrayList<>();
+	}
 
 	
 	

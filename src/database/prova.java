@@ -2,6 +2,7 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,7 +61,8 @@ public class prova
         {
         	
             stmt = conn.createStatement();
-            stmt.execute("truncate table userposition");
+            //stmt.execute("truncate table userposition");
+           
             //stmt.execute("create table rooms(x varchar(5),y varchar(5),floor varchar(5),"
             //		+ "width varchar(5),room varchar(15),building varchar(20), primary key(room,building))  ");
             //stmt.execute("drop table usersposition");

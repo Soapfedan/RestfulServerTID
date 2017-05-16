@@ -22,6 +22,7 @@ public class Debug{
 		Date date = new Date();
 		output.setForeground(Color.BLACK);
 		output.append(format.format(date) + " " + str + "\r\n");
+		output.setCaretPosition(output.getText().length());
 	}
 	
 	public static void err(String str){
@@ -29,5 +30,6 @@ public class Debug{
 		Date date = new Date();
 		output.setForeground(Color.RED);
 		output.append(format.format(date) + " ERROR: " + str + "\r\n");
+		output.setCaretPosition(output.getText().length());
 	}
 }
