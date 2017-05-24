@@ -1,6 +1,7 @@
 package serverui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,6 +31,7 @@ public class ServerCMD {
 		frame.setSize(600, 400);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
 		textArea = new JTextArea();
 		textArea.setTabSize(4);
 		textArea.setWrapStyleWord(true);
@@ -56,7 +58,7 @@ public class ServerCMD {
 		frame.setResizable(false);
 		Debug.setOutputDestination(textArea);
 		
-		JButton start_B = new JButton("Start");
+		JButton start_B = new JButton("Start Server");
 		start_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -84,7 +86,7 @@ public class ServerCMD {
 		start_B.setBounds(118, 255, 120, 50);
 		frame.getContentPane().add(start_B);
 		
-		JButton stop_B = new JButton("Stop");
+		JButton stop_B = new JButton("Stop Server");
 		stop_B.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean check = false;
@@ -105,7 +107,7 @@ public class ServerCMD {
 		frame.getContentPane().add(stop_B);
 		
 		JLabel lblServerLog = new JLabel("Server Log:");
-		lblServerLog.setBounds(131, 21, 78, 24);
+		lblServerLog.setBounds(70, 21, 78, 24);
 		frame.getContentPane().add(lblServerLog);
 		frame.setVisible(true);
 		

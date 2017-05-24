@@ -12,6 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -193,7 +194,8 @@ public class DatabaseConnection {
 		}
 	 	
 	 	@GET
-		@Path("getcsvversion")		
+		@Path("getcsvversion")
+	 	@Produces(MediaType.TEXT_PLAIN)
 		public int getVersion() throws SQLException{				//create user
 	 		String sql = "select max(version) as idmax from csvVersion";
 			 Statement stat = null;
@@ -246,7 +248,7 @@ public class DatabaseConnection {
 		    	        
 		    	    }
 		    	System.out.println(id);
-		    	return id;
+		    	return id+1;
 	 	}
 	 	
     

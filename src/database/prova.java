@@ -63,7 +63,7 @@ public class prova
             //stmt.execute("truncate table userposition");
            
             //stmt.execute("create table csvVersion(version int primary key)");
-            stmt.execute("insert into csvVersion(version) values(1)");
+            //stmt.execute("insert into csvVersion(version) values(1)");
             stmt.close();
         }
         catch (SQLException sqlExcept)
