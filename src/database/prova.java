@@ -60,10 +60,11 @@ public class prova
         {
         	
             stmt = conn.createStatement();
-            //stmt.execute("truncate table userposition");
+            //stmt.execute("insert into param(scanPeriodNormal, scanPeriodSearching,scanPeriodEmergency,"
+            //		+ "periodBetweenScanNormal, periodBetweenScanSearching, periodBetweenScanEmergency) values(3000,1500,1000,15000,5000,3000)");
            
             //stmt.execute("create table csvVersion(version int primary key)");
-            //stmt.execute("insert into csvVersion(version) values(1)");
+            //stmt.execute("truncate table userposition");
             stmt.close();
         }
         catch (SQLException sqlExcept)

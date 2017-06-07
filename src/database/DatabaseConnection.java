@@ -251,5 +251,35 @@ public class DatabaseConnection {
 		    	return id+1;
 	 	}
 	 	
-    
+	 	@GET
+		@Path("parameters")
+	 	@Produces(MediaType.APPLICATION_JSON)
+		public Parameters getParameters() throws SQLException{				//create user
+	 		String sql = "select * from param";
+			 Statement stat = null;
+			 ResultSet rs = null;
+			 Parameters p = null;
+			
+		        	try (Connection conn = connect()){		        		
+		                stat = conn.createStatement();
+		                rs = stat.executeQuery(sql);
+		        		
+		                while(rs.next()){		                
+		                	p = new Parameters(rs.getInt("scanPeriodNormal"),
+		                						rs.getInt("scanPeriodSearching"),
+		                						rs.getInt("scanPeriodEmergency"),
+		                						rs.getInt("periodBetweenScanNormal"),
+		                						rs.getInt("periodBetweenScanSearching"),
+		                						rs.getInt("periodBetweenScanEmergency"));
+		                	
+		                }
+		        	} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}
+		        	
+		        	return p;
+				
+		}
 }
